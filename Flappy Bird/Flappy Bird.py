@@ -41,9 +41,6 @@ pickup = pygame.mixer.Sound(path.join(snd_dir, "pickup.wav"))
 crash = pygame.mixer.Sound(path.join(snd_dir, "crash.ogg"))
 splash = pygame.mixer.Sound(path.join(snd_dir, "splash.wav"))
 
-start_screen = pygame.image.load(path.join(img_dir, "startscreen.png")).convert()
-start_screen = pygame.transform.scale(start_screen, (WIDTH, HEIGHT))
-
 # different lists that contain series of images for animation
 animation = {}
 animation["coin"] = []
@@ -438,14 +435,10 @@ while running:
     screen.blit(background, (0, 0))
     all_sprites.draw(screen)
 
-    # black start screen
-    if instructions or (instructions is False and ready is False):
-        screen.blit(start_screen, (0, 0))
     # writes the text for player score, high score, and the lives once game starts
-    else:
-        draw_text(screen, str(score), WHITE, 25, WIDTH / 2, HEIGHT / 4)
-        draw_text(screen, ("High Score: " + str(high_score)), WHITE, 25, WIDTH / 2, 62.5)
-        draw_lives(screen, 0, 5, player.lives, lives_img)
+    draw_text(screen, str(score), WHITE, 25, WIDTH / 2, HEIGHT / 4)
+    draw_text(screen, ("High Score: " + str(high_score)), WHITE, 25, WIDTH / 2, 62.5)
+    draw_lives(screen, 0, 5, player.lives, lives_img)
 
     # draws image for volume based on value
     if current_volume > .666:
