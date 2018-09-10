@@ -350,20 +350,22 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
+            # if the key pressed is "enter" the game starts
             if event.key == pygame.K_RETURN:
                 ready = True
                 instructions = False
-            if event.key == pygame.K_COMMA or event.key == pygame.K_F2 or pygame.K_PERIOD or pygame.K_F3:
-                volume()
-        if event.type == pygame.KEYUP:
+            # if the key pressed is "backspace" instructions alternate between showing and not showing
             if event.key == pygame.K_BACKSPACE:
                 instructions = not instructions
+            # "," and "F2" lower volume and "." and "F3" raise volume
+            if event.key == pygame.K_COMMA or event.key == pygame.K_F2 or pygame.K_PERIOD or pygame.K_F3:
+                volume()
 
     all_sprites.update()
     current_volume = pygame.mixer.music.get_volume()
     # print(pygame.mixer.music.get_volume())
 
-    # creats series of water at the bottom
+    # creates series of water at the bottom
     now = pygame.time.get_ticks()
     if now - last_water > 375:  # 375 for -2.5 speed 225 for 5 speed
         water = Water()
