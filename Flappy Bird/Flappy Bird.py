@@ -180,10 +180,11 @@ class Player(pygame.sprite.Sprite):
             have_jump = False
 
         keystate = pygame.key.get_pressed()
-        if keystate[pygame.K_SPACE] or keystate[pygame.K_UP] and have_jump and player.lives > 0:
-            self.vel_y = 0
-            self.is_jumping = True
-            self.last_jump = pygame.time.get_ticks()
+        if not player_dead:
+            if keystate[pygame.K_SPACE] or keystate[pygame.K_UP] and have_jump and player.lives > 0:
+                self.vel_y = 0
+                self.is_jumping = True
+                self.last_jump = pygame.time.get_ticks()
 
         if self.is_jumping:
             # makes player jump up till it reaches a jump limit
@@ -341,6 +342,7 @@ game_volume = pygame.mixer.music.set_volume(1)
 ready = False
 instructions = False
 running = True
+player_dead = False
 while running:
     clock.tick(FPS)
     for event in pygame.event.get():
@@ -352,6 +354,7 @@ while running:
             if event.key == pygame.K_RETURN:
                 ready = True
                 instructions = False
+                player_dead = False
             # if the key pressed is "backspace" instructions alternate between showing and not showing
             if event.key == pygame.K_BACKSPACE:
                 instructions = not instructions
@@ -421,11 +424,7 @@ while running:
 
     # makes player unable to move once they die
     if player.lives <= 0:
-        player.jumping = False
-        player.max_jump = False
-        player.current_jump = 0
-        player.max_vel_y = player.max_vel_y * 2
-        player.vel_y = player.max_vel_y
+        player_dead = True
         # official end to game once they reach the bottom
         if player.rect.top > HEIGHT and ready is True:
             splash.play()
@@ -464,7 +463,7 @@ while running:
     # default start screen
     if ready is False and instructions is False:
         draw_text(screen, '''Press "Enter" to start''', WHITE, 25, WIDTH / 2, HEIGHT / 2 - 15)
-        draw_text(screen, '''Hold "Backspace" to show instructions''', WHITE, 25, WIDTH / 2, HEIGHT / 2 + 15)
+        draw_text(screen, '''Press "Backspace" to show instructions''', WHITE, 25, WIDTH / 2, HEIGHT / 2 + 15)
         player.rect.centerx = WIDTH / 4
         player.rect.bottom = HEIGHT / 2
         score = 0
