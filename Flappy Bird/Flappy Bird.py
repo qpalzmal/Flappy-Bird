@@ -144,7 +144,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.bottom = HEIGHT / 2
         # sets up motion numbers
         self.vel_y = 0
-        self.MAX_VEL_Y = 7.5
+        self.max_vel_y = 7.5
         self.accel_y = .2
         # sets up jumping numbers
         self.current_jump = 0
@@ -165,8 +165,8 @@ class Player(pygame.sprite.Sprite):
         if ready:
             # constant movement in y direction with respect to acceleration
             self.vel_y += self.accel_y
-            if self.vel_y > self.MAX_VEL_Y:
-                self.vel_y = self.MAX_VEL_Y
+            if self.vel_y > self.max_vel_y:
+                self.vel_y = self.max_vel_y
             self.rect.y += self.vel_y + self.current_jump
             if self.rect.top < 0:
                 self.rect.top = 0
@@ -208,7 +208,7 @@ class Player(pygame.sprite.Sprite):
     def animate(self):
         now = pygame.time.get_ticks()
         # checks to see if player is jumping
-        if self.current_jump < 0 or self.vel_y < self.MAX_VEL_Y - 6 and ready:
+        if self.current_jump < 0 or self.vel_y < self.max_vel_y - 6 and ready:
             # jump animation
             if now - self.last_update > 50:
                 self.index += 1
@@ -347,6 +347,7 @@ running = True
 while running:
     clock.tick(FPS)
     for event in pygame.event.get():
+        # closes game if they click the "x"
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
@@ -394,7 +395,7 @@ while running:
     # player pipe collision
     hits = pygame.sprite.spritecollide(player, pipes, True)
     for hit in hits:
-        player.lives -= 1
+        player.lives -= 3
         print(player.lives)
         coin_spree = 0
         # once it's game over, if score > high score, high score will be replaced and written into the high score file
@@ -426,7 +427,8 @@ while running:
         player.jumping = False
         player.max_jump = False
         player.current_jump = 0
-        player.vel_y = player.MAX_VEL_Y * 2
+        player.max_vel_y = player.max_vel_y * 2
+        player.vel_y = player.max_vel_y
         # official end to game once they reach the bottom
         if player.rect.top > HEIGHT and ready is True:
             splash.play()
