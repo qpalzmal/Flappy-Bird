@@ -153,7 +153,7 @@ class Player(pygame.sprite.Sprite):
         self.is_jumping = False
         self.is_max_jump = False
 
-        self.lives = 2
+        self.lives = 3
 
     def update(self):
         self.animate()
@@ -395,7 +395,7 @@ while running:
     # player pipe collision
     hits = pygame.sprite.spritecollide(player, pipes, True)
     for hit in hits:
-        player.lives -= 3
+        player.lives -= 1
         print(player.lives)
         coin_spree = 0
         # once it's game over, if score > high score, high score will be replaced and written into the high score file
