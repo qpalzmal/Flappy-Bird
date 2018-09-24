@@ -16,7 +16,7 @@ snd_dir = path.join(path.dirname(__file__), "Sound\\")
 # opens and uses the score file containing high scores
 score_read = open("High Score.txt", "r")
 
-font_name = pygame.font.match_font("verdana")
+# FONT_NAME = pygame.font.match_font("verdana")
 
 # sets up the game
 pygame.init()
@@ -88,7 +88,7 @@ for i in range(4):
 
 # draws any text at specified point
 def draw_text(surf, text, color, size, x, y):
-    font = pygame.font.Font(font_name, size)
+    font = pygame.font.SysFont("Verdana", size)
     text_surface = font.render(text, True, color)
     text_rect = text_surface.get_rect()
     text_rect.midtop = (x, y)

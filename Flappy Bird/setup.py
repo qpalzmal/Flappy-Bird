@@ -1,6 +1,10 @@
 import cx_Freeze
+import os
 
 executables = [cx_Freeze.Executable("Flappy Bird.py")]
+
+os.environ['TCL_LIBRARY'] = r'C:\ProgramData\Anaconda3\tcl\tcl8.6'
+os.environ['TK_LIBRARY'] = r'C:\ProgramData\Anaconda3\tcl\tk8.6'
 
 cx_Freeze.setup(
     name="Flappy Bird",
@@ -13,5 +17,6 @@ cx_Freeze.setup(
                                              "Images/coin4.png", "Images/coin5.png", "Images/water.png",
                                              "Images/pipe.png", "Images/vol0.png", "Images/vol1.png", "Images/vol2.png",
                                              "Images/vol3.png"]}},
+    version="1.0.0",
     executables=executables
 )
