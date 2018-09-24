@@ -3,8 +3,14 @@ import os
 
 executables = [cx_Freeze.Executable("Flappy Bird.py")]
 
-os.environ['TCL_LIBRARY'] = r'C:\ProgramData\Anaconda3\tcl\tcl8.6'
-os.environ['TK_LIBRARY'] = r'C:\ProgramData\Anaconda3\tcl\tk8.6'
+
+# used for Comp #27
+os.environ['TCL_LIBRARY'] = r'C:\Users\CODE\AppData\Local\Programs\Python\Python37-32\tcl\tcl8.6'
+os.environ['TK_LIBRARY'] = r'C:\Users\CODE\AppData\Local\Programs\Python\Python37-32\tcl\tk8.6'
+
+# used for Comp #17
+# os.environ['TCL_LIBRARY'] = r'C:\ProgramData\Anaconda3\tcl\tcl8.6'
+# os.environ['TK_LIBRARY'] = r'C:\ProgramData\Anaconda3\tcl\tk8.6'
 
 cx_Freeze.setup(
     name="Flappy Bird",
