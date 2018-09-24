@@ -343,6 +343,7 @@ ready = False
 instructions = False
 running = True
 player_dead = False
+
 while running:
     clock.tick(FPS)
     for event in pygame.event.get():
@@ -456,7 +457,7 @@ while running:
         draw_text(screen, '''5 coins = extra life and 5 coins in a row without getting hit gives an extra life''',
                   WHITE, 20, WIDTH / 2, HEIGHT / 2 - 30)
         draw_text(screen, '''"Space" or "Up Arrow" to jump''', WHITE, 25, WIDTH / 2, HEIGHT / 2)
-        draw_text(screen, '''"," to decrease volume, "." to increase volume''',
+        draw_text(screen, '''"," to decrease volume, "." to increase volume and "P" to pause''',
                   WHITE, 20, WIDTH / 2, HEIGHT / 2 + 30)
         draw_text(screen, '''"Enter" to start''', WHITE, 20, WIDTH / 2, HEIGHT / 2 + 60)
 
