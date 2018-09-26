@@ -116,8 +116,7 @@ def volume():
 def draw_lives(surf, x, y, lives, img):
     for life in range(lives):
         img_rect = img.get_rect()
-        if type == "lives":
-            img_rect.x = x + 40 * life
+        img_rect.x = x + 40 * life
         img_rect.y = y
         surf.blit(img, img_rect)
 
