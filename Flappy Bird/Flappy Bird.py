@@ -396,7 +396,7 @@ while running:
     hits = pygame.sprite.spritecollide(player, pipes, True)
     for hit in hits:
         player.lives -= 1
-        print(player.lives)
+        # print(player.lives)
         coin_spree = 0
         # once it's game over, if score > high score, high score will be replaced and written into the high score file
         if player.lives <= 0 and int(high_score) < score:
