@@ -326,7 +326,7 @@ spawn_delay = 2250
 
 coin_spree = 0
 score = 0
-future_score = score + 5
+future_score = score + 10
 # reads the high score file to import the highest score
 high_score = int(score_read.readline())
 for line in score_read:
@@ -420,7 +420,7 @@ while running:
         # sets a future score for when player reaches that they will get extra life
         if score >= future_score:
             player.lives += 1
-            future_score = score + 5
+            future_score = score + 10
 
     # makes player unable to move once they die
     if player.lives <= 0:
